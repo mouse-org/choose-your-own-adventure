@@ -2,6 +2,7 @@ var pages = [
   {
     pageName: "beginning",
     pageStory: "Bubbles the jackalope goes to a coffee shop.",
+    pageImageURL: "http://images.media-allrecipes.com/userphotos/960x960/3759276.jpg",
     pageChoices: [
       {
         choiceText: "he orders an iced latte",
@@ -283,6 +284,7 @@ function goTo(pageName, goType) {
   }
   // Clear out current page:
   $( "#story" ).html("");
+  $( "#image" ).html("");
   $( "#choices" ).html("");
   $( "#back" ).html("");
   
@@ -297,6 +299,9 @@ function goTo(pageName, goType) {
 
   // Display new page story and choices:
   $( "#story" ).append("<p>" + currentPage.pageStory + "</p>");
+  if (currentPage.pageImageURL){
+    $( "#image" ).append("<img class='story-image' src='" + currentPage.pageImageURL + "'>")
+  }
   for (var i in currentPage.pageChoices) {
     var choice = currentPage.pageChoices[i];
     $( "<li>" ).click(function(){ goTo(choice.destinationName, "click") }).text(choice.choiceText).appendTo( "#choices" );
