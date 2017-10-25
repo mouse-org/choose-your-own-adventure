@@ -273,6 +273,8 @@ var pages = [
 
 
 function goTo(pageName, goType) {
+  
+  // Add to back button history:
   if (goType === "click") {
     previousPageName.unshift(pageName);
   }
