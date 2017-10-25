@@ -2,11 +2,19 @@
   box-sizing: border-box;
 }
 
+body {
+  text-align: center;
+}
+
 li {
   list-style-type: none;
   border: 1px solid blue;
   padding: .5em;
   display: inline-block;
   margin: .5em;
+  cursor: pointer;
+}
+
+#back-button {
   cursor: pointer;
 }

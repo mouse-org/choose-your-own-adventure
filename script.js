@@ -13,7 +13,7 @@ var pages = [
       }
     ]  
   },
-
+  
   {
     pageName: "tea",
     pageStory: "The tea was full of sticks and leaves and it was gross and disgusting",
@@ -228,7 +228,7 @@ var pages = [
     pageChoices: [
       {
         choiceText: "Boy is he thirsty",
-        destinationName: "hello"
+        destinationName: "beginning"
       }
     ]    
   }, 
@@ -265,18 +265,24 @@ var pages = [
     pageChoices: [
       {
         choiceText: "Drop by a coffee shop",
-        destinationName: "hello"
+        destinationName: "beginning"
       }
     ]    
   }
 ]
 
 
-function goTo(pageName) {
-  console.log(pageName)
+function goTo(pageName, goType) {
+  if (goType === "click") {
+    previousPageName.unshift(pageName);
+  }
+  if (goType === "back") {
+    previousPageName.shift();
+  }
   // Clear out current page:
   $( "#story" ).html("");
   $( "#choices" ).html("");
+  $( "#back" ).html("");
   
   // Find new page in list of pages:
   var currentPage;
@@ -291,10 +297,15 @@ function goTo(pageName) {
   $( "#story" ).append("<p>" + currentPage.pageStory + "</p>");
   for (var i in currentPage.pageChoices) {
     var choice = currentPage.pageChoices[i];
-    $("#choices").append("<li onclick=goTo('" + choice.destinationName +  "')>" + choice.choiceText + "</li>");
+    $( "<li>" ).click(function(){ goTo(choice.destinationName, "click") }).text(choice.choiceText).appendTo( "#choices" );
+  }
+  
+  // Display back button:
+  if (previousPageName[1]) {
+    $( "<span id='back-button'>" ).click(function(){ goTo(previousPageName[1], "back") }).text("< back").appendTo( "#back" );
   }
 
 }
 
-
-goTo("beginning");
+var previousPageName = [];
+goTo("beginning", "click");
