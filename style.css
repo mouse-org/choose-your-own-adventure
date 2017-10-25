@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+}
+
+li {
+  list-style-type: none;
+  border: 1px solid blue;
+  padding: .5em;
+  display: inline-block;
+  margin: .5em;
+  cursor: pointer;
+}
+
+.story-image {
+  max-width: 400px;
+  max-height: 400px;
+}
+
+#back-button {
+  cursor: pointer;
+}
