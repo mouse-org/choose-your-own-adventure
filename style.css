@@ -15,6 +15,11 @@ li {
   cursor: pointer;
 }
 
+.story-image {
+  max-width: 400px;
+  max-height: 400px;
+}
+
 #back-button {
   cursor: pointer;
 }
