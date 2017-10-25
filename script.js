@@ -274,7 +274,7 @@ var pages = [
 
 
 function goTo(pageName, goType) {
-  
+  console.log(pageName);
   // Add to back button history:
   if (goType === "click") {
     previousPageName.unshift(pageName);
@@ -304,14 +304,14 @@ function goTo(pageName, goType) {
   }
   for (var i in currentPage.pageChoices) {
     var choice = currentPage.pageChoices[i];
-    $( "<li>" ).click(function(){ goTo(choice.destinationName, "click") }).text(choice.choiceText).appendTo( "#choices" );
+    $( "<li>" ).click(function(destination) { goTo(destination, "click") }.bind(this, choice.destinationName)).text(choice.choiceText).appendTo( "#choices" ); 
+    
   }
   
   // Display back button:
   if (previousPageName[1]) {
     $( "<span id='back-button'>" ).click(function(){ goTo(previousPageName[1], "back") }).text("< back").appendTo( "#back" );
   }
-
 }
 
 var previousPageName = [];
